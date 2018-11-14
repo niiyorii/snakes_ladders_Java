@@ -8,10 +8,10 @@ package SnakesAndLadders;
 /**
  *
  * @author K00232267 - Neal B
- * @contributor K00231156 -Caolan G
+ * @contributor K00231156 - Caolan G
  */
 public class Game {
     
-    
-    getGridPair(Node, Snake);
+    //getGridPair(Node, Snake);
+    //TODO: Game Logic, Player Input, Multiple Players,
 }

@@ -8,6 +8,7 @@ package SnakesAndLadders;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -18,9 +19,6 @@ import java.util.Set;
 public class GripMap {
     
         int grid[][];
-        // Declaring a Hashmap..
-      HashMap<Integer, Integer> snakeMap = new HashMap<>();
-      //HashMap<Integer, Integer> ladderMap = new HashMap<>();
      
        
         //Accessor Methods for class GridMap.
@@ -62,9 +60,18 @@ public class GripMap {
             this.squareNumber = squareNumber;
         }
     }
+    //Roll Dice Method
+    public static int getDieRoll(){
+        int dieCount = 6; //for variety die approach
+        Random r = new Random();
+        int dieResult = r.nextInt(dieCount)+1;
+        return dieResult;
+    }
      ////////////////////////main loop///////////////////////
     public static void main (String [] args){
         int size = 10;
+        //example code
+        int player = 31;
         //Front end Grid Display.
         int loc = 100;
         int count = 0;
@@ -75,17 +82,18 @@ public class GripMap {
          //HashMap<Integer, Integer> ladderMap = new HashMap<>();
   
         //Adding elements to HashMap
-        snakeMap.put(99,75);
-        snakeMap.put(14,8);
-        snakeMap.put(35, 24);
-        snakeMap.put(66, 44);
-        snakeMap.put(86, 45);
+        snakeMap.put(75,99);
+        snakeMap.put(8,14);
+        snakeMap.put(24,35);
+        snakeMap.put(44,66);
+        snakeMap.put(45,86);
 
         // Display content using Iterator
         Set set = snakeMap.entrySet();
         Iterator it = set.iterator();
         while(it.hasNext()) {
            Map.Entry mentry = (Map.Entry)it.next();
+           //This is fine..
            System.out.print("key is: "+ mentry.getKey() + " & Value is: "+mentry.getValue() +"\n");
 
         }
@@ -102,7 +110,8 @@ public class GripMap {
         Iterator it2 = s2.iterator();
         while(it2.hasNext()) {
             Map.Entry mentry2 = (Map.Entry)it2.next();
-            System.out.print("Top of snake is : "+mentry2.getKey() + " Bottom of Snake is : "+mentry2.getValue()+"\n");
+            //the Key and Pairs are reversed for snake and base.. needed to reverse the put figures on line 85-89
+            System.out.print("Top of snake is : "+mentry2.getValue() + " Bottom of Snake is : "+mentry2.getKey()+"\n");
          }
 
         //for each Y
@@ -126,10 +135,28 @@ public class GripMap {
                     count++;
              }
             System.out.println("\n");
-
-
-
+            //Roll a dice
+            player += getDieRoll();
+            //if the player lands on a snake... 
+            if (snakeMap.containsValue(player)){
+                
+                /// player goes to the base of the snake
+                System.out.println("Player landed on a snake");
+                //move the player
+                player = snakeMap.get(player);
+                System.out.println("Player is now on "+ player);
+            }
 
         }
     }
 }
+
+/**
+ * TODO:
+ * Populate Snakes properly...
+ * Populate Ladders...
+ * 
+ * Re-evaluate grid formation
+ * 
+ * Movement rule, along a path of 10 left-left-only -right-right only..
+ */
