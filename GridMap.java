@@ -16,7 +16,7 @@ import java.util.Set;
  * @author K00232267 - Neal B
  * @contributor K00231156 -Caolan G
  */
-public class GripMap {
+public class GridMap {
     
         int grid[][];
      
