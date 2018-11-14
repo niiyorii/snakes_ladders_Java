@@ -8,6 +8,7 @@ package SnakesAndLadders;
 /**
  *
  * @author K00232267 - Neal B
+ * @contributor K00231156 -Caolan G
  */
 public class Game {
     
