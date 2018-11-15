@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  *
  * @author K00232267 - Neal B
- * @contributor K00231156 -Caolan G
+ * @contributor K00231156 - Caolan G
  */
 public class GridMap {
     
@@ -60,60 +60,45 @@ public class GridMap {
             this.squareNumber = squareNumber;
         }
     }
-    //Roll Dice Method
+    //Roll Dice Method refactored due to repetitive use
     public static int getDieRoll(){
-        int dieCount = 6; //for variety die approach
+      int dieCount = 6; //for variety die approach
         Random r = new Random();
         int dieResult = r.nextInt(dieCount)+1;
-        return dieResult;
+        return dieResult;  
     }
-     ////////////////////////main loop///////////////////////
-    public static void main (String [] args){
+   
+    public static void main (String [] args){ 
         int size = 10;
         //example code
-        int player = 31;
-        //Front end Grid Display.
+        //player position
+        int player = 50;
         int loc = 100;
         int count = 0;
         //int x,y;
         //int rowCounter;
-        // Declaring a Hashmap..
-        HashMap<Integer, Integer> snakeMap = new HashMap<>();
-         //HashMap<Integer, Integer> ladderMap = new HashMap<>();
-  
-        //Adding elements to HashMap
-        snakeMap.put(75,99);
-        snakeMap.put(8,14);
-        snakeMap.put(24,35);
-        snakeMap.put(44,66);
-        snakeMap.put(45,86);
+        // Declaring a Hashmap, Goal and placing map objects....
+        final int GOAL = 100;
 
-        // Display content using Iterator
-        Set set = snakeMap.entrySet();
-        Iterator it = set.iterator();
-        while(it.hasNext()) {
-           Map.Entry mentry = (Map.Entry)it.next();
-           //This is fine..
-           System.out.print("key is: "+ mentry.getKey() + " & Value is: "+mentry.getValue() +"\n");
+        // 2 layered hashmaps for snakes and ladders (refactored as Map for .Entry
+       
+        Map < Integer , Integer > snake = new HashMap <>();
+         Map < Integer , Integer > ladder = new HashMap<>();
+        {
+        snake.put(99,54);
+        snake.put(70,55);
+        snake.put(52,42);
+        snake.put(25,2);
+        snake.put(95,72);
 
+        ladder.put(6,25);
+        ladder.put(11,40);
+        ladder.put(60,85);
+        ladder.put(46,90);
+        ladder.put(17,69);
         }
-
-        //get key/value pair
-        int pos= snakeMap.get(99);
-        System.out.println("There's a snake at grid index 99 it's base is : "+pos);
-
-
-        snakeMap.remove(14);
-        //Check set again after removal
-        System.out.println("Removed key 14:");
-        Set s2 = snakeMap.entrySet();
-        Iterator it2 = s2.iterator();
-        while(it2.hasNext()) {
-            Map.Entry mentry2 = (Map.Entry)it2.next();
-            //the Key and Pairs are reversed for snake and base.. needed to reverse the put figures on line 85-89
-            System.out.print("Top of snake is : "+mentry2.getValue() + " Bottom of Snake is : "+mentry2.getKey()+"\n");
-         }
-
+        // Display content using Iterator
+        //omitted sample Map/Set example.. see previous commits
         //for each Y
         for (int i = 0; i < size; i++){
             //System.out.println();
@@ -135,28 +120,37 @@ public class GridMap {
                     count++;
              }
             System.out.println("\n");
-            //Roll a dice
-            player += getDieRoll();
-            //if the player lands on a snake... 
-            if (snakeMap.containsValue(player)){
-                
-                /// player goes to the base of the snake
-                System.out.println("Player landed on a snake");
-                //move the player
-                player = snakeMap.get(player);
-                System.out.println("Player is now on "+ player);
-            }
+         }
+        //Roll a dice
+        int roll= getDieRoll();
+        System.out.println("Player 1's Square (roll): " + player);
+        System.out.println("Rolling Dice..");
+        System.out.println("Rolled a " +roll);
+        //if this rolls a 2.. it's guaranteed to drop to the base of the snake 
+        // after moving forward 2 and then landing the head of the snake
+        player += roll;
+        if(null!=snake.get(player))
+        {
+            System.out.println("swallowed by snake");
+            player= snake.get(player);
+            System.out.println("Player 1's Square (snake): " + player);
+        }
 
+        if(null!=ladder.get(player))
+        {
+            System.out.println("climb up the ladder");
+            player= ladder.get(player);
+            System.out.println("Player 1's Square (ladder): " + player);
         }
     }
 }
 
 /**
  * TODO:
- * Populate Snakes properly...
- * Populate Ladders...
+ * Populate Snakes properly... [x]
+ * Populate Ladders... [x]
  * 
- * Re-evaluate grid formation
+ * Re-evaluate grid formation ... open for comment
  * 
  * Movement rule, along a path of 10 left-left-only -right-right only..
  */
