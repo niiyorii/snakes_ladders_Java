@@ -86,7 +86,7 @@ public class test_Game {
         p4 =  new Player();
         p4.setPosition(1);
         // For iteration
-        Player[] playerList = {p1,p2,p3,p4};
+        Player[] playerList;
 
       //Set up Player Names
         int numPlaying = 0;
@@ -99,7 +99,8 @@ public class test_Game {
             switch(numPlaying){
                 case 1: System.out.println("Not enough Players");
                     break;
-                case 2: System.out.println("Not enough Players");
+                case 2: System.out.println("2 Players...");
+                           
                     break;
                 case 3: System.out.println("Not enough Players");
                     break;
