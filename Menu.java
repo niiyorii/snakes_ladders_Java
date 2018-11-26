@@ -21,7 +21,7 @@ public class Menu {
         int i = 0;
         while (i == 0) {
             System.out.println(instructions);
-            userInput = scan.nextInt();
+            userInput = scan.nextInt(); 
 
             try {
                 if (userInput == 1) {
