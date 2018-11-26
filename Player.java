@@ -5,12 +5,16 @@
  */
 package SnakesAndLadders;
 
+<<<<<<< HEAD
 import java.util.Random;
 
+=======
+>>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
 /**
  *
  * @author K00232267 - Neal B
  */
+<<<<<<< HEAD
 public class Player implements Comparable <Player> {
 
     
@@ -61,5 +65,35 @@ public class Player implements Comparable <Player> {
     @Override
     public int compareTo(Player o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+=======
+public class Player {
+    
+   private static String playerName;
+   private static int playerPosition;
+   private static int playerRoll;
+
+    public static String getPlayerName() {
+        return playerName;
+    }
+
+    public static void setPlayerName(String aPlayerName) {
+        playerName = aPlayerName;
+    }
+
+    public static int getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public static void setPlayerPosition(int aPlayerPosition) {
+        playerPosition = aPlayerPosition;
+    }
+
+    public static int getPlayerRoll() {
+        return playerRoll;
+    }
+
+    public static void setPlayerRoll(int aPlayerRoll) {
+        playerRoll = aPlayerRoll;
+>>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
     }
 }
