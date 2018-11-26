@@ -7,7 +7,6 @@ package SnakesAndLadders;
 
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 
@@ -42,11 +41,14 @@ import java.util.Map;
 //Prints the Game Board in the order of Snakes and Ladders   
     public void printGrid( int x, int y){
         int size = 10;
-        int count = 0;
+        int count=0;
         int loc = 100; //variable for alternating rows
+        
     //for each Y
         for (int i = 0; i < size; i++){
+            
             //System.out.println();
+           
             // if Y is divisible by 2
             if (i % 2 == 0){
                 count = 0;
@@ -54,6 +56,11 @@ import java.util.Map;
                    System.out.print("\t " + j);
                    loc--;
                    count++;
+                 
+                if (i == y && j == x){
+                System.out.print("o");
+                
+                    }     
                 }
             }
             else
@@ -63,7 +70,12 @@ import java.util.Map;
                    System.out.print("\t " + j);
                     loc--;
                     count++;
+                    if (i == y && j == x){
+                System.out.print("o");
+                
+                    }  
              }
+            
             System.out.println("\n");
          }
     }

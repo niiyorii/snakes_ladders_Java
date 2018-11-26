@@ -5,37 +5,61 @@
  */
 package SnakesAndLadders;
 
+import java.util.Random;
+
 /**
  *
  * @author K00232267 - Neal B
  */
-public class Player {
+public class Player implements Comparable <Player> {
+
     
-   private static String playerName;
-   private static int playerPosition;
-   private static int playerRoll;
-
-    public static String getPlayerName() {
-        return playerName;
+   private static int id;
+   private static String name;
+   private static int position;
+   private static int diceRoll;
+   public Player(){
+       id = 0;
+       name = "AI Player";
+       position = 0;
+       diceRoll = 0;
+   }
+   public static int getId() {
+        return id;
     }
 
-    public static void setPlayerName(String aPlayerName) {
-        playerName = aPlayerName;
+    public static void setId(int id) {
+        Player.id = id;
+    }
+    public String getPlayerName() {
+        return name;
     }
 
-    public static int getPlayerPosition() {
-        return playerPosition;
+    public void setName(String aName) {
+        name = aName;
     }
 
-    public static void setPlayerPosition(int aPlayerPosition) {
-        playerPosition = aPlayerPosition;
+    public int getPosition() {
+        return position;
     }
 
-    public static int getPlayerRoll() {
-        return playerRoll;
+    public void setPosition(int aPosition) {
+        position = aPosition;
     }
 
-    public static void setPlayerRoll(int aPlayerRoll) {
-        playerRoll = aPlayerRoll;
+    public int getDieResult() {
+        return diceRoll;
+    }
+    
+    public void rollDice() {
+        int dieCount = 6; //for variety die approach
+        Random r = new Random();
+        int dieResult = r.nextInt(dieCount)+1;
+        diceRoll =  dieResult;
+    }
+    //Just for comparable subclass modification.
+    @Override
+    public int compareTo(Player o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
