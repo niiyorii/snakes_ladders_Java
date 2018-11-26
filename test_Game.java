@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package SnakesAndLadders;
-
+import SnakesAndLadders.Player;
+import static SnakesAndLadders.Player.initialisePlayers;
 import java.util.Scanner;
 
 /**
@@ -75,22 +76,11 @@ public class test_Game {
         ladder.put(17,69);
         }
         //Create Player Objects
-        Player p1,p2,p3,p4; // 1-4 players
-        //Default Inits (Start at position 1)
-        p1 =  new Player();
-        p1.setPosition(1);
-        p2 =  new Player();
-        p2.setPosition(1);
-        p3 =  new Player();
-        p3.setPosition(1);
-        p4 =  new Player();
-        p4.setPosition(1);
-        // For iteration
-        Player[] playerList;
+        Player[] playerList = new Player[2]; // default capacity 2 (at least one AI)..
 
       //Set up Player Names
-        int numPlaying = 0;
-        int count = 0;
+        int numPlaying;
+       
         do{
             System.out.println("Enter the number of players playing. (1-4)");
             Scanner sc =  new Scanner(System.in);
@@ -98,85 +88,133 @@ public class test_Game {
             numPlaying = sc.nextInt();
             switch(numPlaying){
                 case 1: System.out.println("Not enough Players");
+                        //Debug
+                     // Do something for case 1.
                     break;
                 case 2: System.out.println("2 Players...");
-                           
+                         playerList = initialisePlayers(2); // 2 Players
+                        //Debug
+                        for (int i = 0; i < playerList.length; i++){
+                            playerList[i].setId(i+1);
+                            System.out.println(playerList[i].getPlayerName() + " " + playerList[i].getId() );
+                        }
+
                     break;
-                case 3: System.out.println("Not enough Players");
+                case 3: System.out.println("3 Players..");
+                        playerList =  initialisePlayers(3); // 3 Players
+                        //Debug
+                        for (int i = 0; i < playerList.length; i++){
+                            playerList[i].setId(i+1);
+                            System.out.println(playerList[i].getPlayerName() + " " + playerList[i].getId() );
+                        }
+
                     break;
-                case 4: System.out.println("Not enough Players");
+                case 4: System.out.println("4 Players..");
+                        playerList =  initialisePlayers(4); // 4 Players
+                        //Debug
+                        for (int i = 0; i < playerList.length; i++){
+                            playerList[i].setId(i+1);
+                            System.out.println(playerList[i].getPlayerName() + " " + playerList[i].getId() );
+                        }
+
                     break;
                 default: System.out.println("invalid input");
                     break;
                 
             }
-            if (numPlaying > 4 || numPlaying < 1){
-                System.out.println("Not enough players");
-            }
-            else{
-                count = numPlaying;
-                System.out.println(count);
-                    //For each player specified give a name.
-                    //bug here - if < 0 enter name.
-                for (int i =0; i < playerList.length; i++){
-                    playerList[i].setName(null);
-                }
-                for (Player p : playerList){
-                    //System.out.println(p.getPlayerName());
-                    System.out.println("Enter player name");
-                   
-                        
-                        String name = sc.nextLine();
-                        p.setName(name);
-                       
-                    }
-                }
-            }while(numPlaying < 1 && numPlaying >= 4);
+        }while(numPlaying < 1 && numPlaying >= 4);
+        
+       Scanner sc = new Scanner(System.in);
+       int count = numPlaying;
+        //System.out.println(count);
+            //For each player specified give a name.
+            //bug here - if < 0 enter name.
+        //This is fine.. playerList is initialised in individual case statements
+        String name = "";
+        for (int i = 0; i < playerList.length; i++){
+            System.out.print("Enter a Player Name...");
+            name = sc.nextLine();
+
+            playerList[i].setId(i+1);
+            playerList[i].setName(name);
+            System.out.println(playerList[i].getPlayerName() + " " + playerList[i].getId() );
+        }
+
+       
         
     /* Take Turns rolling the highest dice */
-    int player = 0; // track which player has highest.
+    //Player p; // short code for playerList[i]1
+        
+    int player = 0; // denotes a player's roll
     //int highest = 0;
     //int playerFirst =0;
-    for (Player p : playerList)
-    {
-            player = p.getPosition();
-            System.out.println("Press Space to Roll a Dice " + p.getPlayerName());
-            //while(p.getPosition() < 100){
-            //Roll a dice
-            p.rollDice();
-            int roll= p.getDieResult();
-            int lastRoll = roll;
-            //needs refactoring
-            int y = p.getPosition() / 10;
-            int x = p.getPosition() % 10;
-            players.printGrid(x,y);
+    int turn = 0;
+    do {
+        for (int i = playerList.length; i >= 0 ; i--){
 
-            System.out.println(p.getPlayerName() +" get Square (roll): " + player);
-            System.out.println("Rolling Dice..");
-            System.out.println(p.getPlayerName() +"Rolled a " +roll);
-            //if this rolls a 2.. it's guaranteed to drop to the base of the snake 
-            // after moving forward 2 and then landing the head of the snake
-            player += roll;
-            if(null!=snake.get(player))
-            {
-                System.out.println("swallowed by snake");
-                player= (int)snake.get(player);
-                System.out.println(p.getPlayerName() +" Square (snake): " + player);
-            }
+            System.out.println("List Length : "+playerList.length);
+                 if (turn % 2== 1){
+                    i = playerList.length-1;
+                }
+                if (turn % playerList.length == 1){
+                    if (i == playerList.length){
+                       i+2;
+                        
+                    }
+                    else
+                        i++;
+                }
+                //p = playerList[i];
+                //System.out.println(playerList[i].getId());
 
-            if(null!=ladder.get(player))
-            {
-                System.out.println("climb up the ladder");
-                player= (int)ladder.get(player);
-                System.out.println(p.getPlayerName()+" Square (ladder): " + player);
+                Scanner in = new Scanner(System.in);
+                String keypress = " ";
+                System.out.print(keypress);
+                keypress = in.nextLine();
+                System.out.println("Press Enter to Roll a Dice " + playerList[i].getPlayerName());
+                System.out.print(keypress);
+                keypress = in.nextLine();
+                //while(p.getPosition() < 100){
+                //Roll a dice
+                playerList[i].rollDice();
+                int roll= playerList[i].getDieResult();
+                int lastRoll = roll;
+                playerList[i].setPosition(roll);
+                //needs refactoring
+                int y = playerList[i].getPosition() / 10;
+                int x = playerList[i].getPosition() % 10;
+                players.printGrid(x,y);
+
+                System.out.println(playerList[i].getPlayerName() +" is on Square: " + player);
+                System.out.println("Rolling Dice..");
+                System.out.println(playerList[i].getPlayerName() +" Rolled a " +lastRoll);
+                //if this rolls a 2.. it's guaranteed to drop to the base of the snake 
+                // after moving forward 2 and then landing the head of the snake
+                player += lastRoll;
+                if(null!=snake.get(player))
+                {
+                    System.out.println("swallowed by snake");
+                    player= (int)snake.get(player);
+                    System.out.println(playerList[i].getPlayerName() +" Square (snake): " + player);
+                }
+
+                if(null!=ladder.get(player))
+                {
+                    System.out.println("climb up the ladder");
+                    player= (int)ladder.get(player);
+                    System.out.println(playerList[i].getPlayerName()+" Square (ladder): " + player);
+                }
+                if (player > GOAL){
+                    player  = GOAL - lastRoll;
+                }
+                if (player == GOAL){
+                    System.out.println("Congrats.. "+playerList[i].getPlayerName()+" wins");
+                }
+                turn++;
+               
+
             }
-            if (player > GOAL){
-                player  = GOAL - lastRoll;
-            }
-            if (player == GOAL){
-                System.out.println("Congrats.. "+p.getPlayerName()+" wins");
-            }
-        }
+        } while(player != 100);
     }
 }
 /**
