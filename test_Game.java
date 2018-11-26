@@ -38,13 +38,13 @@ public class test_Game {
                 + "Make a Choice\n"
                 + "1. Play a Game\n"
                 + "2. Quit.\n"
-                + "################");
+                + "################\n");
         Scanner sc = new Scanner(System.in);
         int in = sc.nextInt();
         switch(in){ 
             case 1: gameLogic();
                 break;
-            case 2: System.out.println("Exitting");
+            case 2: System.out.println("Exiting");
                        System.exit(0);
                 break;
             default: System.out.println("Unsupported input");
@@ -96,6 +96,19 @@ public class test_Game {
             Scanner sc =  new Scanner(System.in);
             //count = sc.nextInt();
             numPlaying = sc.nextInt();
+            switch(numPlaying){
+                case 1: System.out.println("Not enough Players");
+                    break;
+                case 2: System.out.println("Not enough Players");
+                    break;
+                case 3: System.out.println("Not enough Players");
+                    break;
+                case 4: System.out.println("Not enough Players");
+                    break;
+                default: System.out.println("invalid input");
+                    break;
+                
+            }
             if (numPlaying > 4 || numPlaying < 1){
                 System.out.println("Not enough players");
             }
@@ -104,9 +117,11 @@ public class test_Game {
                 System.out.println(count);
                     //For each player specified give a name.
                     //bug here - if < 0 enter name.
-                
+                for (int i =0; i < playerList.length; i++){
+                    playerList[i].setName(null);
+                }
                 for (Player p : playerList){
-                    System.out.println(p.getPlayerName());
+                    //System.out.println(p.getPlayerName());
                     System.out.println("Enter player name");
                    
                         
@@ -115,7 +130,7 @@ public class test_Game {
                        
                     }
                 }
-            }while(numPlaying < 1 || numPlaying > 4);
+            }while(numPlaying < 1 && numPlaying >= 4);
         
     /* Take Turns rolling the highest dice */
     int player = 0; // track which player has highest.

@@ -17,19 +17,10 @@ public class Main {
     
     //Example Usage
     // Default Capacity for snakes and ladders is 16^n
-<<<<<<< HEAD
-    public static GameBoard < Integer, Integer> board = new GameBoard<>();
-   
-}
-  //Refactored all code into test_game
-     //Roll Dice Method
-    /*
-=======
     static GameBoard board = new GameBoard();
     
  
      //Roll Dice Method
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
     public static int getDieRoll(){
         int dieCount = 6; //for variety die approach
         Random r = new Random();
@@ -44,11 +35,7 @@ public class Main {
         //Track player position (Can be stored later in Player Object)
         // as in Player.pos where .pos is an integer 
         //and getPlayerPosition can be used to fetch p1, p2 and p3 positions independently
-<<<<<<< HEAD
         int player = 1;
-=======
-        int player = 0;
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
         //int x,y; [no need]
         //int rowCounter; [no need]
         // Declaring a Hashmap, Goal and placing map objects.... [ done ]
@@ -56,17 +43,11 @@ public class Main {
 
         // 2 layered gridmaps for snakes and ladders (re-implemented for Map and Map.Entry)
        
-<<<<<<< HEAD
     GameBoard < Integer , Integer > snake = new GameBoard<>();
     GameBoard < Integer , Integer > ladder = new GameBoard<>();
     GameBoard < Integer , Integer > players = new GameBoard<>();
     //Refactored into board class
     {
-=======
-        GameBoard < Integer , Integer > snake = new GameBoard<>();
-        GameBoard < Integer , Integer > ladder = new GameBoard<>();
-        {
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
         snake.put(99,54);
         snake.put(70,55);
         snake.put(52,42);
@@ -81,44 +62,11 @@ public class Main {
         }
         // Display content using Iterator
         //omitted sample Map/Set example.. see previous commits
-<<<<<<< HEAD
         while(player < 100){
         //Roll a dice
         int roll= getDieRoll();
         int lastRoll = roll;
-        //needs refactoring
-        switch(player){
-case 1:{}
-break;
-case 2:{}
-break;
-case 3:{}
-break;
-case 4:{}
-break;
-case 5:{}
-break;
-case 6:{}
-break;
-case 7:{}
-break;
-case 8:{}
-break;
-case 9:{}
-break;
-case 0:{}
-break;
-default:{}
-break;
-            }
-        players.printGrid((player%10), y );
-        
-=======
-        
-        //Roll a dice
-        int roll= getDieRoll();
-        int lastRoll = roll;
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
+        players.printGrid(roll, x);
         System.out.println("Player 1's Square (roll): " + player);
         System.out.println("Rolling Dice..");
         System.out.println("Rolled a " +roll);
@@ -143,17 +91,10 @@ break;
         }
         if (player == GOAL){
             System.out.println("Congrats.. player wins");
-<<<<<<< HEAD
         }
     }
         
 }
-    */
-   
-=======
-    }
-}
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
 
 /**
  * TODO:
@@ -165,13 +106,3 @@ break;
  * Movement rule, along a path of 10 left-left-only -right-right only..
  */
 }
-<<<<<<< HEAD
-=======
-
-
-
-
-    Node.key.();
-    GridMap.Node.Key() // 
-    GridMap.Node.Value() //
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b

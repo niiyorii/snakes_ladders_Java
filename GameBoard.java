@@ -7,10 +7,6 @@ package SnakesAndLadders;
 
 
 import java.util.HashMap;
-<<<<<<< HEAD
-=======
-import java.util.Map;
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
 
 
 
@@ -45,7 +41,6 @@ import java.util.Map;
 //Prints the Game Board in the order of Snakes and Ladders   
     public void printGrid( int x, int y){
         int size = 10;
-<<<<<<< HEAD
         int count=0;
         int loc = 100; //variable for alternating rows
         
@@ -54,13 +49,6 @@ import java.util.Map;
             
             //System.out.println();
            
-=======
-        int count = 0;
-        int loc = 100; //variable for alternating rows
-    //for each Y
-        for (int i = 0; i < size; i++){
-            //System.out.println();
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
             // if Y is divisible by 2
             if (i % 2 == 0){
                 count = 0;
@@ -68,14 +56,11 @@ import java.util.Map;
                    System.out.print("\t " + j);
                    loc--;
                    count++;
-<<<<<<< HEAD
                  
-                if (i == y && j == x){
+                if (i == y && count == x){
                 System.out.print("o");
                 
                     }     
-=======
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
                 }
             }
             else
@@ -85,16 +70,12 @@ import java.util.Map;
                    System.out.print("\t " + j);
                     loc--;
                     count++;
-<<<<<<< HEAD
                     if (i == y && j == x){
                 System.out.print("o");
                 
                     }  
              }
             
-=======
-             }
->>>>>>> 477feddb029aae6b192f5731d182ff6e21f7571b
             System.out.println("\n");
          }
     }
