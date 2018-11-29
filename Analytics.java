@@ -1,3 +1,4 @@
+import SnakesAndLadders.Player;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 
 
 
-public class Analytics {
+public class Analytics extends Player implements Iterable <Player> {
     //Where these will be the project level path to each of these components.
     //One txt file for the separate analytics of both the player and the three AI's.
     private final String playerStatsFileLocation = "";

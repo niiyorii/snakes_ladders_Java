@@ -14,27 +14,7 @@ import java.util.Scanner;
 public class test_Game {
         private static Player[] playerList;
         public static void main (String [] args){
-            
-        
-        // Simple solution first..
-        //Track player position (Can be stored later in Player Object)
-        // as in Player.pos where .pos is an integer 
-        //and getPlayerPosition can be used to fetch p1, p2 and p3 positions independently
-            
-        /* Set up Game Block      */
-        
-        
-        //Create a Player List (Comparable to Player p for each Player)
-        
-        
-        
-        
-        //int player = 1;
-        //int x,y; [no need]
-        //int rowCounter; [no need]
-        // Declaring a Hashmap, Goal and placing map objects.... [ done ]
-        
-    
+
     /* Menu Loop - Start Game, Give Player Name, Quit. etc */ 
         System.out.println("################\n"
                 + "Make a Choice\n"
@@ -53,35 +33,8 @@ public class test_Game {
                break;
         }
     }
-    /* Game Logic */
-    public static void gameLogic(){
-        //Define End Goal
-        final int GOAL = 100;  // specify a final value to check if the player is greater than or less
-
-        // 2 layered gridmaps for snakes and ladders (implemented as GameBoard ext. HashMap for Map and Map.Entry)
-        GameBoard < Integer , Integer > players = new GameBoard<>();
-        GameBoard < Integer , Integer > snake = new GameBoard<>();
-        GameBoard < Integer , Integer > ladder = new GameBoard<>();
-    
-    {
-        snake.put(99,54);
-        snake.put(70,55);
-        snake.put(52,42);
-        snake.put(25,2);
-        snake.put(95,72);
-
-        ladder.put(6,25);
-        ladder.put(11,40);
-        ladder.put(60,85);
-        ladder.put(46,90);
-        ladder.put(17,69);
-        }
-        //Create Player Objects
-        Player p;
-
-      //Set up Player Names
-        int numPlaying;
-       
+        public static int getNumOfPlayers(){
+            int numPlaying;
         do{
             System.out.println("Enter the number of players playing. (1-4)");
             Scanner sc =  new Scanner(System.in);
@@ -109,124 +62,136 @@ public class test_Game {
                 
             }
         }while(numPlaying < 1 && numPlaying >= 4);
+        return numPlaying;
+       }
+    /* Game Logic 
+    *
+    *Usage: Called to Create the GameBoard objects and run/ Initialise
+    *   Game based componenents. Prompts the user to enter a number of players
+    *   enter in the name for each Player and then takes turns rolling the dice
+    *   to progress the game.
+    *
+    *   Status: Green-Tint-Sapphire. 85% Completion
+    *   TODO: Add CPU Menu Prompt, Specify Number of AI Players, Looping..
+    *
+    */
         
-       Scanner sc = new Scanner(System.in);
-       int count = numPlaying;
-       playerList = initialisePlayers(numPlaying);
-      // p.playerList
-        //System.out.println(count);
-            //For each player specified give a name.
-        String name = "";
-        for (int i = 0; i < numPlaying; i++){
-            System.out.print("Enter a Player Name...");
-            name = sc.nextLine();
+    public static void gameLogic(){
+        //Define End Goal
+        final int GOAL = 100;
+           // specify a final value to check if the player is greater than or less
 
-            //playerList[i].setId(i+1);
-            playerList[i].setId(i+1);
-            //playerList[i].setName(name);
-            playerList[i].setName(name);
-            System.out.println(playerList[i].getName() + " " + playerList[i].getId() );
+        // 2 layered gridmaps for snakes and ladders (implemented as GameBoard ext. HashMap for Map and Map.Entry)
+        GameBoard < Integer , Integer > players = new GameBoard<>();
+        GameBoard < Integer , Integer > snake = new GameBoard<>();
+        GameBoard < Integer , Integer > ladder = new GameBoard<>();
+    {
+        snake.put(99,54);
+        snake.put(70,55);
+        snake.put(52,42);
+        snake.put(25,2);
+        snake.put(95,72);
+
+        ladder.put(6,25);
+        ladder.put(11,40);
+        ladder.put(60,85);
+        ladder.put(46,90);
+        ladder.put(17,69);
         }
+       //Set up Player Names
+       Scanner sc = new Scanner(System.in);
+       int numPlaying = getNumOfPlayers();
+       initialisePlayers(numPlaying);
 
-       
-        
+       //For each player specified give a name.
+       String name = "";
+       for (int i = 0; i < numPlaying; i++){
+            System.out.print("Enter a Player Name...");
+            name = sc.nextLine();   
+            playerList[i].setId(i+1);
+            playerList[i].setName(name);
+            //System.out.println(playerList[i].getName() + " " + playerList[i].getId() );
+       }
     /* Take Turns rolling the highest dice */
-    //Player p; // short code for playerList[i]
-        
     int player = 0; // denotes a player's roll
-    //int highest = 0;
-    //int playerFirst =0;
-    int turn = 0;
-    while(player != 100) {
+
+    //Actual Game Loop
+    while(player < GOAL) {
+
         for (int i = 0; i < numPlaying; i++){
-            
-            System.out.println("\ni :" + i);
-            System.out.println(" Length : "+ player);
-            System.out.println("List i name: "+ playerList[i].getName());
-            System.out.println("List id: "+ playerList[i].getId());
-            //System.out.println("\ni :" + i);
-            //System.out.println("List Length : "+playerList.length);
-            System.out.println("List i name: "+ playerList[i].getName());
-            System.out.println("List id: "+ playerList[i].getId()); 
-            //System.out.println("\ni :" + i);
-            //System.out.println("List Length : "+playerList.length);
-            System.out.println("List i name: "+ playerList[i].getName());
-            System.out.println("List id: "+ playerList[i].getId()); 
-                   
-                //p = playerList[i];
-                //System.out.println(playerList[i].getId());
 
                 Scanner in = new Scanner(System.in);
                 String keypress = " ";
-                //System.out.print(keypress);
-                //keypress = in.nextLine();
-                System.out.println("Press Enter to Roll a Dice " + playerList[i].getName());
+
+                System.out.println("Press Enter to Roll a Dice " + getPlayer(i).getName());
                 System.out.print(keypress);
                 keypress = in.nextLine();
-                //while(p.getPosition() < 100){
                 //Roll a dice
-                playerList[i].rollDice();
-                int roll= playerList[i].getDieResult();
-                int lastRoll = roll;
-                playerList[i].setPosition(roll);
-                //needs refactoring
-                int y = playerList[i].getPosition() / 10;
-                int x = playerList[i].getPosition() % 10;
+                getPlayer(i).rollDice();
+                int roll= getPlayer(i).getDieResult();
+                player = getPlayer(i).getPosition();
+                int y = getPlayer(i).getPosition() / 10;
+                int x = getPlayer(i).getPosition() % 10;
                 players.printGrid(x,y);
 
-                System.out.println(playerList[i].getName() +" is on Square: " + player);
+                System.out.println(getPlayer(i).getName() + " is on Square: " + player);
                 System.out.println("Rolling Dice..");
-                System.out.println(playerList[i].getName() +" Rolled a " +lastRoll);
+                System.out.println(getPlayer(i).getName() + " Rolled a " +roll);
+                System.out.println(getPlayer(i).getName() + " is now on Square: " + (player+roll));
                 //if this rolls a 2.. it's guaranteed to drop to the base of the snake 
                 // after moving forward 2 and then landing the head of the snake
-                player += lastRoll;
+                player = getPlayer(i).getPosition()+roll;
+                getPlayer(i).setPosition(player);
+                
                 if(null!=snake.get(player))
                 {
                     System.out.println("swallowed by snake");
                     player= (int)snake.get(player);
-                    System.out.println(playerList[i].getName() +" Square (snake): " + player);
+                    getPlayer(i).setPosition(player);
+                    System.out.println(getPlayer(i).getName() +" Square (snake): " + player);
                 }
 
                 if(null!=ladder.get(player))
                 {
                     System.out.println("climb up the ladder");
                     player= (int)ladder.get(player);
-                    System.out.println(playerList[i].getName()+" Square (ladder): " + player);
+                    getPlayer(i).setPosition(player);
+                    System.out.println(getPlayer(i).getName()+" Square (ladder): " + player);
                 }
                 if (player > GOAL){
-                    player  = GOAL - lastRoll;
+                    player  = GOAL - roll;
+                    getPlayer(i).setPosition(player);
                 }
                 if (player == GOAL){
-                    System.out.println("Congrats.. "+playerList[i].getName()+" wins");
+                    System.out.println("Congrats.. "+getPlayer(i).getName()+" wins");
+                  
                 }
-                turn++;
-               if (turn % 2 == 0){
-                   i++;
-               }
-               //turn taking..
-               //broken
-               else if(turn % playerList.length == 1){
-                   i=0;
-               }
-
+            }
+            if (player > GOAL){
+              System.out.println("Game Over");
+                break;
             }
         } 
     }
+    /*
+    *Usage: called to initialise a number of Player Objects in an Array.
+    * Status: Green. 100% Complete
+    */
      /* Fields */ 
-    public static Player[] initialisePlayers (int numberOfPlayers){
-        Player[] newPlayers = new Player[numberOfPlayers];
-        for (int i = 0; i < newPlayers.length; ++i ){
-            newPlayers[i] = new Player();
-            newPlayers[i].setPosition(i);
+    public static void initialisePlayers (int numberOfPlayers){
+        playerList = new Player[numberOfPlayers+1];
+        for (int i = 0; i < playerList.length; i++ ){
+            playerList[i] = new Player();
+            playerList[i].setId(i);
             //listedPlayers[i].setId(i);
-            
         }
-        
-         return newPlayers;//static reference
-        //return newPlayers; //non static return
     }
-    public Player getPlayer (int player){
-        
+    /*
+    *Usage: Called to return an index of a Player Object in an Array
+    *
+    *Status : Green. 100% Complete.
+    */
+    public static Player getPlayer (int player){
         return playerList[player];
     }
 }

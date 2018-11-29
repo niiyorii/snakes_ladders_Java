@@ -38,17 +38,14 @@ import java.util.HashMap;
     public void findPlayerPosition(){
        throw new IllegalArgumentException("Not Yet Supported");
     }
-//Prints the Game Board in the order of Snakes and Ladders   
+    //Prints the Game Board in the order of Snakes and Ladders   
     public void printGrid( int x, int y){
         int size = 10;
         int count=0;
         int loc = 100; //variable for alternating rows
-        
-    //for each Y
+        //for each Y
         for (int i = 0; i < size; i++){
-            
             //System.out.println();
-           
             // if Y is divisible by 2
             if (i % 2 == 0){
                 count = 0;
@@ -56,27 +53,28 @@ import java.util.HashMap;
                    System.out.print("\t " + j);
                    loc--;
                    count++;
-                 
-                if (i == y && count == x){
-                System.out.print("o");
-                
+                 //x =i i = 1
+                  //y = j j = 100
+                    if (i == y && j == x){
+                        System.out.print("o");
+                        System.out.println("x:"+x);
+                        System.out.println("y:"+y);
                     }     
                 }
             }
             else
-             count = 0;
-            for (int j = loc-9; count < 10 ; ++j){
-
+                count = 0;
+                for (int j = loc-9; count < 10 ; ++j){
                    System.out.print("\t " + j);
-                    loc--;
-                    count++;
-                    if (i == y && j == x){
-                System.out.print("o");
-                
-                    }  
-             }
-            
+                   loc--;
+                   count++;
+                   if (i == y && count == x){
+                        System.out.print("o");
+                        System.out.println(x);
+                        System.out.println(y);
+                    } 
+                }  
             System.out.println("\n");
-         }
+        }
     }
  }

@@ -20,15 +20,14 @@ public class Player implements Iterable <Player> {
    private  String name;
    private  int position;
    private  int diceRoll;
-   //private static Player[] playerList;
-   private Player[] playerList;
+   private Player[] playerList; // refactor this..
 
    
    public Player(){
-       id =  1;
-       name = "AI Player";
-       position = 1;
-       diceRoll = 0;
+       this.id =  1;
+       this.name = "AI Player";
+       this.position = 0;
+       this.diceRoll = 0;
    }
 
    public  int getId() {
@@ -36,14 +35,14 @@ public class Player implements Iterable <Player> {
     }
    
     public  void setId(int aId) {
-        id = aId;
+        this.id = aId;
     }
     public  String getName() {
         return name;
     }
 
     public  void setName(String aName) {
-        name = aName;
+        this.name = aName;
     }
 
     public  int getPosition() {
@@ -51,7 +50,7 @@ public class Player implements Iterable <Player> {
     }
 
     public  void setPosition(int aPosition) {
-        position += aPosition;
+        this.position = aPosition;
     }
 
     public  int getDieResult() {
@@ -69,9 +68,7 @@ public class Player implements Iterable <Player> {
     public Iterator<Player> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-   
-   
+       
     /*      Test Client      */
     public static void main (String [] args){
         int numPlaying = 3;
@@ -102,7 +99,7 @@ public class Player implements Iterable <Player> {
          
          //Example code for referencing static context
          //Issue - Reprints last created Object
-         // Issue - Not indexing first Object
+         // Issue - object not referencing values
         //Recreate the code breaking issue...
         //Issue 1..
         
