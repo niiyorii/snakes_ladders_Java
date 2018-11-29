@@ -21,12 +21,12 @@ public class Menu {
         int i = 0;
         while (i == 0) {
             System.out.println(instructions);
-            userInput = scan.nextInt(); 
+            userInput = scan.nextInt();
 
             try {
                 if (userInput == 1) {
                     i++;
-                    Main.main(null);
+                    //Main.main(null);
                 } else if (userInput == 2) {
                     i++;
                     //To print out the rules wherever they may be.
@@ -35,7 +35,7 @@ public class Menu {
                         while ((line = gameRulesReader.readLine()) != null) {
                             System.out.println(line);
                         }
-                    }catch (IOException e){
+                    } catch (IOException e) {
                         System.out.println("Error IOException:\n\n" + e);
                     }
                 } else if (userInput == 3) {
@@ -56,3 +56,4 @@ public class Menu {
         }
     }
 }
+

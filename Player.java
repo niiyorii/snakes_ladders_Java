@@ -100,7 +100,7 @@ public class Player implements Iterable <Player> {
          //Example code for referencing static context
          //Issue - Reprints last created Object
          // Issue - object not referencing values
-        //Recreate the code breaking issue...
+        //Recreate the code breaking issue... define private variables static
         //Issue 1..
         
         System.out.println("Issue 1:");

@@ -13,11 +13,11 @@ import java.util.Random;
  * @contributor K00231156 - Caolan G
  */
 
-public class Main {
+public class Game {
     
     //Example Usage
     // Default Capacity for snakes and ladders is 16^n
-    static GameBoard board = new GameBoard();
+    static GameBoardMap board = new GameBoardMap();
     
  
      //Roll Dice Method

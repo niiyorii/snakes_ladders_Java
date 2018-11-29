@@ -80,11 +80,11 @@ public class test_Game {
         //Define End Goal
         final int GOAL = 100;
            // specify a final value to check if the player is greater than or less
-
-        // 2 layered gridmaps for snakes and ladders (implemented as GameBoard ext. HashMap for Map and Map.Entry)
-        GameBoard < Integer , Integer > players = new GameBoard<>();
-        GameBoard < Integer , Integer > snake = new GameBoard<>();
-        GameBoard < Integer , Integer > ladder = new GameBoard<>();
+// 2 layered gridmaps for snakes and ladders (implemented as GameBoard ext. HashMap for Map and Map.Entry)
+        GameBoardMap < Integer , Integer > players = new GameBoardMap<>();
+        GameBoardMap < Integer , Integer > snake = new GameBoardMap<>();
+        GameBoardMap < Integer , Integer > ladder = new GameBoardMap<>();
+      
     {
         snake.put(99,54);
         snake.put(70,55);
@@ -98,6 +98,7 @@ public class test_Game {
         ladder.put(46,90);
         ladder.put(17,69);
         }
+      
        //Set up Player Names
        Scanner sc = new Scanner(System.in);
        int numPlaying = getNumOfPlayers();
@@ -143,13 +144,7 @@ public class test_Game {
                 player = getPlayer(i).getPosition()+roll;
                 getPlayer(i).setPosition(player);
                 
-                if(null!=snake.get(player))
-                {
-                    System.out.println("swallowed by snake");
-                    player= (int)snake.get(player);
-                    getPlayer(i).setPosition(player);
-                    System.out.println(getPlayer(i).getName() +" Square (snake): " + player);
-                }
+                
 
                 if(null!=ladder.get(player))
                 {
