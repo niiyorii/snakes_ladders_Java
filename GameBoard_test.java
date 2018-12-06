@@ -21,10 +21,11 @@ package SnakesAndLadders;
  * @author K00232267 - Neal B
  */
 public class GameBoard_test {
-    
-     private static class Node {
-         private int position;
-         private int type;
+
+    private static class Node {
+
+        private int position;
+        private int type;
 
         public int getPosition() {
             return position;
@@ -41,25 +42,24 @@ public class GameBoard_test {
         public void setType(int type) {
             this.type = type;
         }
-         
-     }
-     
-     
-     public static void main (String [] args){
+
+    }
+
+    /* Test  Client */
+    public static void main(String[] args) {
         Node player = new Node();
         {
-                player.setPosition(10);
+            player.setPosition(10);
         }
         Node snake = new Node();
-        
+
         {
-            snake.setPosition(55);
+            snake.setPosition(24);
+            snake.setPosition(45);
+            snake.setPosition(64);
+            snake.setPosition(82);
+            snake.setPosition(98);
         }
-         
-     
-     }
-     
-     
-     
-     
+    }
+
 }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package SnakesAndLadders;
-import SnakesAndLadders.Player.*;
 import java.util.Scanner;
 
 /**
@@ -44,6 +43,7 @@ public class test_Game {
                 case 1: System.out.println("Not enough Players");
                         //Debug
                      // Do something for case 1.
+                        getNumOfPlayers();
                     break;
                 case 2: System.out.println("2 Players...");
                       
@@ -81,22 +81,23 @@ public class test_Game {
         final int GOAL = 100;
            // specify a final value to check if the player is greater than or less
 // 2 layered gridmaps for snakes and ladders (implemented as GameBoard ext. HashMap for Map and Map.Entry)
-        GameBoardMap < Integer , Integer > players = new GameBoardMap<>();
-        GameBoardMap < Integer , Integer > snake = new GameBoardMap<>();
-        GameBoardMap < Integer , Integer > ladder = new GameBoardMap<>();
+       
+        GameBoardMap < Integer , Integer > board = new GameBoardMap<>();
       
     {
-        snake.put(99,54);
-        snake.put(70,55);
-        snake.put(52,42);
-        snake.put(25,2);
-        snake.put(95,72);
-
-        ladder.put(6,25);
-        ladder.put(11,40);
-        ladder.put(60,85);
-        ladder.put(46,90);
-        ladder.put(17,69);
+        //snakes
+        board.put(99,54);
+        board.put(70,55);
+        board.put(52,42);
+        board.put(25,2);
+        board.put(95,72);
+        
+        //ladders
+        board.put(6,25);
+        board.put(11,40);
+        board.put(60,85);
+        board.put(46,90);
+        board.put(17,69);
         }
       
        //Set up Player Names
@@ -131,9 +132,9 @@ public class test_Game {
                 getPlayer(i).rollDice();
                 int roll= getPlayer(i).getDieResult();
                 player = getPlayer(i).getPosition();
-                int y = getPlayer(i).getPosition() / 10;
-                int x = getPlayer(i).getPosition() % 10;
-                players.printGrid(x,y);
+               // int y = getPlayer(i).getPosition() / 10;
+                //int x = getPlayer(i).getPosition() % 10;
+                board.printGrid(0,0);
 
                 System.out.println(getPlayer(i).getName() + " is on Square: " + player);
                 System.out.println("Rolling Dice..");
@@ -146,10 +147,10 @@ public class test_Game {
                 
                 
 
-                if(null!=ladder.get(player))
+                if(null!=board.get(player))
                 {
                     System.out.println("climb up the ladder");
-                    player= (int)ladder.get(player);
+                    player= (int)board.get(player);
                     getPlayer(i).setPosition(player);
                     System.out.println(getPlayer(i).getName()+" Square (ladder): " + player);
                 }
