@@ -23,15 +23,14 @@ package SnakesAndLadders.test;
 public interface ITile {
 
     int position = 0;
-    String type = "";
-
+    Tile type = new Tile();
     int getPosition();
 
     void setPosition(int aPosition);
 
-    String getType();
+    Tile getType();
 
-    void setType(String aType);
+    void setType(Tile aType);
 
     boolean isLastTile();
 
