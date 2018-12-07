@@ -124,7 +124,16 @@ class Tile {
         ArrayList<Tile> board = new ArrayList<>();
         Tile aTile = new Tile();
         Tile trap = new Tile(0, 10, new Cell());
+        // we don't really need to define player in terms of type sooooo,
+        //give it a position and let's do it.
+        Cell player = new Cell();
+        player.setPosition(2);
 
+        // for this to correlate fully to the Player class.
+        // Player should extend Cell, therefore Player inherits cell
+        // has a position
+        // an unspecified type (we could coin this "teams")
+        // 
         System.out.println("Created 2 Tiles");
         System.out.println(aTile.toString());
         System.out.println(trap.toString());
@@ -161,15 +170,29 @@ class Tile {
             board.set(95, new Snake(95, 72));
             board.set(99, new Snake(99, 54));
 
-
             //add ladders to the board
-            board.set(6, new Ladder(6, 25));
-            board.set(11, new Ladder(11, 40));
+          board.set(6, new Ladder(6, 25));
+           board.set(11, new Ladder(11, 40));
             board.set(17, new Ladder(17, 69));
-            board.set(46, new Ladder(46, 90));
-            board.set(60, new Ladder(60, 85));
+           board.set(46, new Ladder(46, 90));
+           board.set(60, new Ladder(60, 85));
         }
+
+        //test instanceof
+        // actual code: Tile t = board.get(i);
+        Tile t = board.get(2);
+        Ladder l[] = {(Ladder)board.get(6), (Ladder)board.get(11), (Ladder)board.get(17), (Ladder)board.get(46),(Ladder)board.get(60)};
+        if (player instanceof Ladder){
+            System.out.println("Player hit a Ladder");
+        }
+        if (player instanceof Snake){
+             System.out.println("Player hit a Snake");    
+        }
+        else
+            System.out.println("Player moved.");
+            
         
     }
 
+}
 }

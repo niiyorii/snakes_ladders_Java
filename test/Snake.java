@@ -36,7 +36,7 @@ public class Snake extends Cell {
 
     @Override
     public String toString() {
-        return "Snake{" + " [inherited] position: " + super.getTilePosition() + " [inherited] top: " +super.getTop() +  '}' + "";
+        return "Snake{" + " [inherited] position: " + super.getTilePosition() + " [inherited] Bottom: " +super.getBottom() +  '}' + "";
     }
 
 // Do Something.
