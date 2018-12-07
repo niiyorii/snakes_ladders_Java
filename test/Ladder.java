@@ -20,22 +20,6 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-public class Game {
+public class Ladder {
     
-    private static Game game = null;
-    private static int numberOfPlayers = 0;
-    private static Player[] players;
-    private static int numberOfTurns;
-    
-    private Game(){} //future proof the game.
-    
-    private Game(String[] playerList) throws IllegalArgumentException{
-        if (playerList == null || playerList.length == 0){
-            throw new IllegalArgumentException("At Least 2 Players need to be provided ");
-        }
-        numberOfPlayers = playerList.length;
-        
-        //validate number of Players
-        if(numberOfPlayers > 6)
-    }
 }

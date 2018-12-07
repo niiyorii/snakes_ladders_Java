@@ -20,6 +20,25 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-public class PlayerManager {
+class Trap extends Tile{
+    Trap[] trapList;
+    Trap type;
+
+    public Trap getType() {
+        return type;
+    }
+
+    public void setType(Trap type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Trap{" + "type=" + type + '}';
+    }
+    public static void main (String [] args){
+        Trap snake  =  new Trap();
+    }
     
+
 }

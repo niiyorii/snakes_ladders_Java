@@ -23,11 +23,11 @@ import java.util.ArrayList;
  * @author K00232267 - Neal B
  */
 
-public class Player extends Tile {
+public class Player{
     private int id;
     private int position;
     private String name;
-    private Tile[] playerList;
+    private Player[] playerList;
 
     //Default Constructor
     public Player() {
@@ -65,33 +65,35 @@ public class Player extends Tile {
     public void setPosition(int position){
         this.position = position;
     }
-     public void initialisePlayers (int numberOfPlayers){
-             playerList = new Tile[numberOfPlayers+1];
+     public static void initialisePlayers (int numberOfPlayers){
+             Player [] playerList = new Player[numberOfPlayers+1];
             for (int i = 0; i < playerList.length; i++ ){
                    playerList[i] = new Player();
                    playerList[i].setId(i);
                 //listedPlayers[i].setId(i);
              }
         }
+     public Player getPlayer (int pos){
+         return (Player)playerList[position];
+     }
     public static void main (String [] args) {
-        ArrayList<Tile> board = new ArrayList<>(); // an arraylist of tiles..
-
+        Board board = new Board();
+       
+       
+        Player p = new Player();
         Player [] playersList;
-        Tile t = new Tile();
+        Tile tiledPlayer = new Player();
         
         int numberOfPlayers = 4;
-        
-        Player p = initialisePlayers(numberOfPlayers);
+        initialisePlayers(numberOfPlayers);
         
         
         // Specifications
         // Needs to be able to Create a Player[]
         // Initialse a Tile as a Player
         // Fetch a Player Object from a Tile [Player extends Tile]
+        tiledPlayer.getPlayer(0);
         
-        playersList = t.getPlayerList();
-        board.add(t.getPlayer(0));
-        board.get(t.setPlayer(new Tile()));
         
     }
 }

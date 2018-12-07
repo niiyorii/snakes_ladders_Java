@@ -21,24 +21,51 @@ package SnakesAndLadders.test;
  * @author K00232267 - Neal B
  */
 public class Board {
+    Tile[] tiles;
+    Player[] players;
     Tile t;
-    Square[] squares;
+    Player p;
 
-    public Tile getSq() {
-        return sq;
+    public Tile getTile() {
+        return t;
     }
 
     public void setTile(Tile t) {
-        this.Tile = t;
+        this.t = t;
     }
 
-    public Square[] getSquares() {
-        return squares;
+    public Player getPlayer() {
+        return p;
     }
 
-    public void setSquares(Square[] squares) {
-        this.squares = squares;
+    public void setPlayer(Player p) {
+        this.p = p;
+    }
+
+    public Tile[] getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(Tile[] tiles) {
+        this.tiles = tiles;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
     }
     
-    
+    public static void main (String [] args){
+       Board  gameboard = new Board();
+       gameboard.setTiles(new Tile[100]);
+       gameboard.setPlayers(new Player[4]);
+       
+       gameboard.players[i].
+       
+        
+        
+    }
 }

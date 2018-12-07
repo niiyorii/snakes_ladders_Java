@@ -1,11 +1,8 @@
-import SnakesAndLadders.Player;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameBoard {
-    
-
-    public static class Tile extends Player {
-
+    public static class Tile {
 
         private Player[] playerList;
 
@@ -17,17 +14,11 @@ public class GameBoard {
         private boolean snake;
         private boolean trap;
 
-
         //Mutator Methods
-        public void initialisePlayers (int numberOfPlayers){
-             playerList = new Tile[numberOfPlayers+1];
-            for (int i = 0; i < playerList.length; i++ ){
-                   playerList[i] = new Tile();
-                   playerList[i].setId(i);
-                //listedPlayers[i].setId(i);
-             }
+        public void setPlayerList(Player[] playerList) {
+            this.playerList = playerList;
         }
-        @Override
+
         public void setPosition(int position) {
             this.position = position;
         }
@@ -61,7 +52,7 @@ public class GameBoard {
             return playerList;
         }
 
-        public int getTilePosition() {
+        public int getPosition() {
             return position;
         }
 
@@ -85,28 +76,18 @@ public class GameBoard {
             return trap;
         }
 
-        //Additional Methods
-        //Extra methods here if needed... I don't think any will be needed.
-    }
-    public static void main (String [] args) {
-        ArrayList<Tile> board = new ArrayList<>(); // an arraylist of tiles..
-
-        Player [] playersList;
-        Player t = new Tile();
-        
-        int numberOfPlayers = 4;
-        
-        t.initialisePlayers(numberOfPlayers);
-        
-        
-        // Specifications
-        // Needs to be able to Create a Player[]
-        // Initialse a Tile as a Player
-        // Fetch a Player Object from a Tile [Player extends Tile]
-        
-        playersList = t.getPlayerList();
-        board.add(t.getPlayer(0));
-        board.get(t.setPlayer(new Tile()));
-        
+        //toString
+        @Override
+        public String toString() {
+            return "Tile{" +
+                    "playerList=" + Arrays.toString(playerList) +
+                    ", position=" + position +
+                    ", bottom=" + bottom +
+                    ", top=" + top +
+                    ", ladder=" + ladder +
+                    ", snake=" + snake +
+                    ", trap=" + trap +
+                    '}';
+        }
     }
 }

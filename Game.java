@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game extends GameBoard {
-    GameBoard snakesAndLadders = new GameBoard();
+    static ArrayList<Tile> board = new ArrayList();
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -12,49 +13,28 @@ public class Game extends GameBoard {
             board.add(new Tile());
         }
 
-        /*
-            Was thinking that it would be a smarter idea to implement only 1 human player and 3 AI's until we have the majority of the project working.
-            Then, if there is still time we can add the feature for extra human players.
-
-            If we added 3 AI's and 1 human player instead of multiple human players it would save some extra logic that would be needed to calculate every humans player deciding to roll a dice and more.
-            If that makes sense.
-        */
         Game main = new Game();
         board.get(0).setPlayerList(main.initialisePlayers());
 
         for (int i = 0; i < 4; i++) {
-            System.out.println(board.get(0).getPlayerFromPlayerList(i).getName() + " is on tile number " + board.get(0).getPosition());
+            System.out.println(board.get(0).getPlayer(i).getName() + " is on tile number " + board.get(0).getPosition());
         }
 
         System.out.println("\nLet the game begin!");
 
-        int dieRollResult = 0;
         int playerPosition = 0;
         int artificialIntelligence1Position = 0;
         int artificialIntelligence2Position = 0;
         int artificialIntelligence3Position = 0;
 
-        boolean playing = true;
-        while(playing){
-
-            dieRollResult = main.rollDie();
-
-
-            for(int i = 0; i < board.get(playerPosition).getPlayerList().length; i++){
-                board.get(playerPosition).getPlayerFromPlayerList(i).setPosition(board.get(playerPosition).getPlayerFromPlayerList(i).getPosition() + dieRollResult);
-            }
-            playing = false;
-            //board.get(artificialIntelligence1Position).getPlayerList(0).setPosition(board.get(0).getPlayerList(0).getPosition() + dieRollResult);
-            //board.get(artificialIntelligence2Position).getPlayerList(0).setPosition(board.get(0).getPlayerList(0).getPosition() + dieRollResult);
-            //board.get(artificialIntelligence3Position).getPlayerList(0).setPosition(board.get(0).getPlayerList(0).getPosition() + dieRollResult);
-        }
-        System.out.println("Red Rolled a " + dieRollResult);
-        System.out.println(board.get(playerPosition).getPlayerFromPlayerList(0).getName() + " is now in position " + board.get(playerPosition).getPlayerFromPlayerList(0).getPosition());
-
+        main.playGame(main, playerPosition);
+        main.playGame(main, artificialIntelligence1Position);
+        main.playGame(main, artificialIntelligence2Position);
+        main.playGame(main, artificialIntelligence3Position);
     }
 
     //Additional Methods
-    public Player[] initialisePlayers() {
+    private Player[] initialisePlayers() {
         Player[] createPlayers = new Player[4];
 
         for (int i = 0; i < 4; i++) {
@@ -68,8 +48,61 @@ public class Game extends GameBoard {
         return createPlayers;
     }
 
-    public int rollDie() {
-        return (int) (Math.random() * (6 + 1));
+    private static Player getPlayer(int a, int b) {
+        return board.get(a).getPlayer(b);
+    }
+
+    public void turn(int playerPosition, int dieRollResult) {
+        for (int i = 0; i < board.get(playerPosition).getPlayerList().length; i++) {
+
+        }
+        System.out.println(board.get(playerPosition).getPlayer(0).getName() + " Rolled a " + dieRollResult);
+        System.out.println(getPlayer(playerPosition, 0).getName() + " is now in position " + board.get(playerPosition).getPlayer(0).getPosition());
+    }
+
+    public void movePlayerOnGameBoard(int positionFromPositionTo, int dieRollResult) {
+        Player[] p = new Player[1];
+        p[positionFromPositionTo] = board.get(positionFromPositionTo).getPlayer(positionFromPositionTo);
+        Tile t = new Tile();
+        t.setPlayerList(p);
+        board.set(dieRollResult, t);
+
+        System.out.println(board.get(dieRollResult).getPlayer(0).getPosition());
+    }
+
+    public void playGame(Game main, int playerPosition) {
+        Scanner scan = new Scanner(System.in);
+        Dice twoDiceSix = new Dice();
+        boolean isPlaying = true;
+        int dieRollResult;
+        int userInput;
+
+        while (isPlaying) {
+            for (int i = 0; i < 4; i++) {
+                System.out.println(board.get(playerPosition).getPlayer(i).getName() + " press '1' to roll a die.");
+                userInput = scan.nextInt();
+
+                try {
+                    if (userInput == 1) {
+                        dieRollResult = twoDiceSix.rollDie();
+                        System.out.println(board.get(playerPosition).getPlayer(i).getName() + " rolled a " + dieRollResult);
+
+                        board.get(playerPosition).getPlayer(i).setPosition(board.get(playerPosition).getPlayer(i).getPosition() + dieRollResult);
+                        System.out.println(getPlayer(playerPosition, i).getName() + " is now in position " + board.get(playerPosition).getPlayer(i).getPosition());
+
+                        main.movePlayerOnGameBoard(playerPosition, dieRollResult);
+                        System.out.println(board.get(dieRollResult).getPlayer(i).getName() + " is on tile number " + board.get(1).getPosition());
+
+                    } else {
+                        System.out.println("\nError: Invalid entry!");
+                        System.out.println("Please enter '1' to roll a die.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("\nError: Invalid entry!");
+                    System.out.println("Error: Please enter '1' to roll a die.");
+                }
+            }
+        }
     }
 }
 

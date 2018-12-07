@@ -1,5 +1,3 @@
-package SnakesAndLadders;
-
 public class Player {
     private int id;
     private int position;
@@ -25,7 +23,8 @@ public class Player {
     public String getName() {
         return name;
     }
-    public int getPosition(){
+
+    public int getPosition() {
         return position;
     }
 
@@ -38,10 +37,19 @@ public class Player {
         name = aName;
     }
 
-    public void setPosition(int position){
+    public void setPosition(int position) {
         this.position = position;
     }
 
+    //toString
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", position=" + position +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
 
 }

@@ -23,13 +23,34 @@ import java.util.Random;
  *
  * @author K00232267 - Neal B
  */
-public class Tile {
+public interface ITile {
 
-//    private Tile[] tileList;
+    int position=0;
+    String type="";
+   
+    int getPosition();
+    void setPosition(int aPosition);
+    String getType();
+    void setType(String aType);
+    boolean isLastTile();
+    boolean isOccupied();
+ 
+}
+
+    class Tile {
+    private Tile[] tileList;
     private int position;
-    private int bottom;
-    private int top;
     private int id;
+    private Trap type;
+
+    public Trap getType() {
+        return type;
+    }
+
+    public void setType(Trap type) {
+        this.type = type;
+    }
+    
 
     //Default
     public Tile() {
@@ -37,27 +58,27 @@ public class Tile {
         this.id = 0;
     }
 
-    public Tile(int position, int id) {
+    public Tile(int id, int position, Trap trap) {
         this.position = position;
         this.id = id;
+        trap = new Trap();
     }
 
-    public Tile(int position, int bottom, int top, int id) {
+    public Tile(int id, int position, Trap trap) {
         this.position = position;
-        this.bottom = bottom;
-        this.top = top;
         this.id = id;
+        trap = new Trap();
     }
 
     //Mutator Methods
-    // Game Manager field...
-//    public void initialiseTiles(int numberOfTiles) {
-//        tileList = new Tile[numberOfTiles + 1];
-//        for (int i = 0; i < tileList.length; i++) {
-//            tileList[i] = new Tile();
-//            tileList[i].setId(i);
-//        }
-//    }
+     
+    public void initialiseTiles(int numberOfTiles) {
+        tileList = new Tile[numberOfTiles + 1];
+        for (int i = 0; i < tileList.length; i++) {
+            tileList[i] = new Tile();
+            tileList[i].setId(i);
+        }
+    }
 
     public void setPosition(int position) {
         this.position = position;
@@ -72,26 +93,13 @@ public class Tile {
     }
 
     //Accessor Methods
-// Game Manager fields...
-//    public Tile getTile(int position) {
-//        return tileList[position];
-//    }
-//
-//    public Tile[] getTileList() {
-//        return tileList;
-//    }
+
 
     public int getTilePosition() {
         return position;
     }
 
-    public int getBottom() {
-        return bottom;
-    }
-
-    public int getTop() {
-        return top;
-    }
+    
     public void setId(int i) {
         this.id = i;
     }
@@ -106,13 +114,12 @@ public class Tile {
     public static void main(String[] args) {
         ArrayList <Tile> board = new ArrayList<>();
         //empty Tile
-        Tile t = new Player();
        for (int i = 0; i < 100; i++){
-           Random r = new Random();
-             
-            
-           board.add(new Player());
-           System.out.println(board.get(i).toString());
+           if (i = 12){
+               board.set(i,new Tile(1,12,Ladder(1,12,21)));
+           }
+           board.set(i, new Tile());
+           
        }
        
         
