@@ -20,25 +20,31 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-class Trap extends Tile{
-    Trap[] trapList;
-    Trap type;
+public class Snake extends Cell {
 
-    public Trap getType() {
-        return type;
+    Snake() {
+        super.setTop(0);
+        super.setBottom(0);
+        super.getType();
     }
 
-    public void setType(Trap type) {
-        this.type = type;
+    Snake(int position,int bottom) {
+        super.setPosition(position);
+        super.setBottom(bottom);
+        super.getType();
     }
 
     @Override
     public String toString() {
-        return "Trap{" + "type=" + type + '}';
+        return "Snake{" + " [inherited] position: " + super.getTilePosition() + " [inherited] top: " +super.getTop() +  '}' + "";
     }
-    public static void main (String [] args){
-        Trap snake  =  new Trap();
-    }
-    
 
+// Do Something.
+    public static void main(String[] args) {
+        Snake s = new Snake(34, 12);
+        Cell player = new Cell();
+        player.setPosition(32);
+        System.out.println(s.isSnake());
+        System.out.println(player.isLadder());
+    }
 }

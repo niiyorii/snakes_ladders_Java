@@ -17,7 +17,6 @@
 package SnakesAndLadders.test;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -25,59 +24,76 @@ import java.util.Random;
  */
 public interface ITile {
 
-    int position=0;
-    String type="";
-   
+    int position = 0;
+    String type = "";
+
     int getPosition();
+
     void setPosition(int aPosition);
+
     String getType();
+
     void setType(String aType);
+
     boolean isLastTile();
+
     boolean isOccupied();
- 
+
 }
 
-    class Tile {
+class Tile {
+
     private Tile[] tileList;
     private int position;
     private int id;
-    private Trap type;
+    private Cell type;
+    private int top;
+    private int bottom;
 
-    public Trap getType() {
+    /* Accessors */
+    public Tile[] getTileList() {
+        return tileList;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getTop() {
+        return top;
+    }
+
+    public int getBottom() {
+        return bottom;
+    }
+
+    public Tile getType() {
         return type;
     }
 
-    public void setType(Trap type) {
-        this.type = type;
+    public int getTilePosition() {
+        return position;
     }
-    
 
     //Default
     public Tile() {
-        this.position += 1;
+        this.position = 1;
         this.id = 0;
     }
 
-    public Tile(int id, int position, Trap trap) {
+    public Tile(int id, int position, Cell trap) {
         this.position = position;
         this.id = id;
-        trap = new Trap();
+        trap = new Cell();
     }
 
-    public Tile(int id, int position, Trap trap) {
-        this.position = position;
-        this.id = id;
-        trap = new Trap();
-    }
-
-    //Mutator Methods
-     
-    public void initialiseTiles(int numberOfTiles) {
-        tileList = new Tile[numberOfTiles + 1];
-        for (int i = 0; i < tileList.length; i++) {
-            tileList[i] = new Tile();
-            tileList[i].setId(i);
-        }
+    /* Mutator Methods */
+    public void setType(Cell type) {
+        this.type = type;
     }
 
     public void setPosition(int position) {
@@ -92,38 +108,68 @@ public interface ITile {
         this.top = top;
     }
 
-    //Accessor Methods
-
-
-    public int getTilePosition() {
-        return position;
-    }
-
-    
     public void setId(int i) {
         this.id = i;
     }
 
     @Override
     public String toString() {
-        return "Tile{" + " position=" + position + ", bottom=" + bottom + ", top=" + top + ", id=" + id + '}';
+        return "Tile{" + "tileList=" + tileList + ", position=" + position + ", id=" + id + ", top=" + top + ", bottom=" + bottom + '}' + ", type=" + type;
     }
 
-        //Additional Methods
+    //Additional Methods
     //Extra methods here if needed... I don't think any will be needed.
+    /* Test Client */
     public static void main(String[] args) {
-        ArrayList <Tile> board = new ArrayList<>();
-        //empty Tile
-       for (int i = 0; i < 100; i++){
-           if (i = 12){
-               board.set(i,new Tile(1,12,Ladder(1,12,21)));
-           }
-           board.set(i, new Tile());
-           
-       }
-       
-        
+        ArrayList<Tile> board = new ArrayList<>();
+        Tile aTile = new Tile();
+        Tile trap = new Tile(0, 10, new Cell());
 
+        System.out.println("Created 2 Tiles");
+        System.out.println(aTile.toString());
+        System.out.println(trap.toString());
+
+        System.out.println("Modified Second one as a Cell");
+        trap.type = new Cell();
+
+        System.out.println(trap.toString());
+
+        trap.setPosition(0);
+        trap.setTop(10);
+        trap.setBottom(0);
+        trap.setType(new Snake());
+
+        System.out.println("Modified Second one as a Trap");
+        System.out.println(trap.toString());
+
+        board.add(trap);
+
+        board.add(aTile);
+
+        Tile cell;
+        //Create 100 tiles
+        for (int i = 0; i < 100; i++) {
+            cell = new Tile(i, i, new Cell());
+            board.add(cell);
+        }
+        /* We can leave these unassigned until we do analytics */
+        {
+            //add snakes to the board
+            board.set(25, new Snake(25, 2));
+            board.set(52, new Snake(52, 42));
+            board.set(70, new Snake(70, 55));
+            board.set(95, new Snake(95, 72));
+            board.set(99, new Snake(99, 54));
+
+
+            //add ladders to the board
+            board.set(6, new Ladder(6, 25));
+            board.set(11, new Ladder(11, 40));
+            board.set(17, new Ladder(17, 69));
+            board.set(46, new Ladder(46, 90));
+            board.set(60, new Ladder(60, 85));
+        }
+        
     }
 
 }

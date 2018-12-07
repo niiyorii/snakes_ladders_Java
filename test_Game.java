@@ -174,9 +174,9 @@ public class test_Game {
     * Status: Green. 100% Complete
     */
      /* Fields */ 
-    public static void initialisePlayers (int numberOfPlayers){
-        playerList = new Player[numberOfPlayers+1];
-        for (int i = 0; i < playerList.length; i++ ){
+    public static void initialisePlayers(int numberOfPlayers) {
+        playerList = new Player[numberOfPlayers + 1];
+        for (int i = 0; i < playerList.length; i++) {
             playerList[i] = new Player();
             playerList[i].setId(i);
             //listedPlayers[i].setId(i);

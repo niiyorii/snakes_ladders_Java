@@ -20,52 +20,56 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-public class Board {
-    Tile[] tiles;
+public class Board extends Tile {
+
+    Tile[] board;
     Player[] players;
-    Tile t;
-    Player p;
+    Cell[] traps;
 
-    public Tile getTile() {
-        return t;
+    public Tile[] getBoard() {
+        return board;
     }
 
-    public void setTile(Tile t) {
-        this.t = t;
-    }
-
-    public Player getPlayer() {
-        return p;
-    }
-
-    public void setPlayer(Player p) {
-        this.p = p;
-    }
-
-    public Tile[] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[] tiles) {
-        this.tiles = tiles;
+    public void setBoard(Tile[] board) {
+        this.board = board;
     }
 
     public Player[] getPlayers() {
         return players;
     }
 
-    public void setPlayers(Player[] players) {
+    public void setPlayers(Player player) {
         this.players = players;
     }
-    
-    public static void main (String [] args){
-       Board  gameboard = new Board();
-       gameboard.setTiles(new Tile[100]);
-       gameboard.setPlayers(new Player[4]);
-       
-       gameboard.players[i].
-       
-        
-        
+
+    @Override
+    public int getTilePosition() {
+        return super.getTilePosition(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void initialiseTiles(int numberOfTiles) {
+        super.initialiseTiles(numberOfTiles); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setTrap(Tile tile, Cell type) throws InstantiationException, IllegalAccessException {
+        tile.setType(type); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Cell getType() {
+        return getType(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void initialisePlayers(int numberOfPlayers) {
+        players = new Player[numberOfPlayers + 1];
+        for (int i = 0; i < players.length; i++) {
+            players[i] = new Player();
+            players[i].setId(i);
+            //listedPlayers[i].setId(i);
+        }
+    }
+
+    Board() {
+    } // for future changes
+
 }

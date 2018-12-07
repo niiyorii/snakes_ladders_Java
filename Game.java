@@ -1,8 +1,11 @@
+package SnakesAndLadders;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game extends GameBoard {
+
     static ArrayList<Tile> board = new ArrayList();
 
     public static void main(String[] args) {
@@ -105,7 +108,3 @@ public class Game extends GameBoard {
         }
     }
 }
-
-
-
-

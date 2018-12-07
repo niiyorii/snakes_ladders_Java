@@ -20,6 +20,31 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-public class Ladder {
-    
+public class Ladder extends Cell {
+
+    Ladder() {
+        super.setTop(0);
+        super.setBottom(0);
+        super.getType();
+    }
+
+    Ladder(int position,int top) {
+        super.setPosition(position);
+        super.setTop(top);
+        super.getType();
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" + "[inherited] position: " + super.getTilePosition() + "[inherited] top: " +super.getTop() +  '}' + "";
+    }
+
+// Do Something.
+    public static void main(String[] args) {
+        Ladder s = new Ladder(34, 12);
+        Cell player = new Cell();
+        player.setPosition(32);
+        System.out.println(s.isSnake());
+        System.out.println(player.isLadder());
+    }
 }
