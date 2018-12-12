@@ -20,6 +20,7 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
+<<<<<<< HEAD:rev1/Square.java
 public class Square extends Cell{
 
         public Square() {
@@ -35,3 +36,24 @@ public class Square extends Cell{
            
         }
     }
+=======
+public interface ITile {
+
+    int position = 0;
+    Tile type = new Tile();
+    int getPosition();
+
+    void setPosition(int aPosition);
+
+    Tile getType();
+
+    void setType(Tile aType);
+
+    boolean isLastTile();
+
+    boolean isOccupied();
+
+}
+
+}
+>>>>>>> e0b7aa771ca91e65423230cbb3e0bdf5a6a9bf40:test/ITile.java
