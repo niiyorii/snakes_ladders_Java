@@ -20,23 +20,18 @@ package SnakesAndLadders.test;
  *
  * @author K00232267 - Neal B
  */
-public interface ITile {
+public class Square extends Cell{
 
-    int position = 0;
-    String type = "";
-
-    int getPosition();
-
-    void setPosition(int aPosition);
-
-    String getType();
-
-    void setType(String aType);
-
-    boolean isLastTile();
-
-    boolean isOccupied();
-
-}
-
-}
+        public Square() {
+            super();
+            super.setType("Square");
+            super.setPosition(0);
+           
+        }
+        public Square(int position) {
+            super();
+            super.setType("Square");
+            super.setPosition(position);
+           
+        }
+    }
